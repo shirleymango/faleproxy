@@ -17,9 +17,10 @@ describe('Integration Tests', () => {
     nock.disableNetConnect();
     nock.enableNetConnect('localhost');
     
-    // Create a temporary test app file
-    await execAsync('cp app.js app.test.js');
-    await execAsync(`sed -i '' 's/const PORT = 3001/const PORT = ${TEST_PORT}/' app.test.js`);
+    // Create a temporary test app file with modified port
+    const appContent = require('fs').readFileSync('app.js', 'utf8');
+    const modifiedContent = appContent.replace(/const PORT = \d+/, `const PORT = ${TEST_PORT}`);
+    require('fs').writeFileSync('app.test.js', modifiedContent);
     
     // Start the test server
     server = require('child_process').spawn('node', ['app.test.js'], {
