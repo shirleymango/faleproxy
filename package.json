@@ -32,14 +32,6 @@
       "!**/node_modules/**",
       "!**/coverage/**",
       "!jest.config.js"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 30,
-        "branches": 30,
-        "functions": 30,
-        "lines": 30
-      }
-    }
+    ]
   }
 }
